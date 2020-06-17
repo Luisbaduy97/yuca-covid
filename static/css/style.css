@@ -1,0 +1,16 @@
+.info-mx{
+    text-align: center;
+    margin: 10px 80px;
+    margin-top: 50px;
+}
+.info-mx-nav{
+    margin: 10px 30px;
+}
+.text-info{
+    margin-bottom: 0px;
+    color: black !important;
+}
+.nav-sep{
+    padding-left: 20px;
+    padding-right: 20px;
+}
