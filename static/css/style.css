@@ -3,6 +3,7 @@
     margin: 10px 80px;
     margin-top: 50px;
     font-size: large;
+    font-weight: bold;
 }
 .info-mx-nav{
     margin: 10px 30px;
@@ -18,6 +19,10 @@
 .info-chart{
     position: relative;
     height: 80vh;
+}
+.results{
+    font-weight: bold;
+    font-size: x-large;
 }
 
 
