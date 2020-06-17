@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light info-mx-nav">
+  <nav class="info-mx-bar navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">YucaCovid</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,42 +40,47 @@
       </ul>
     </div>
   </nav>
-
-  <!--Cards-->
-  <div class="row info-mx">
-    <div class = "col-lg-3 col-md-6">
-      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-        <div class="card-header">Positivos</div>
-        <div class="card-body">
-          <h5 class="card-title results">{{message.positivos.positivo_total}}</h5>
-        </div>
-      </div>
-    </div>
-    <div class = "col-lg-3 col-md-6">
-      <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-        <div class="card-header">Confirmar</div>
-        <div class="card-body">
-          <h5 class="card-title  results">{{message.confirmar}}</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Negativos</div>
-        <div class="card-body">
-          <h5 class="card-title  results">{{message.negativos.negativo_total}}</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Defunciones</div>
-        <div class="card-body">
-          <h5 class="card-title  results">{{message.defunciones}}</h5>
-        </div>
-      </div>
-    </div>
+  <div class="container-fluid">
+    <h1 class="display-4">COVID-Yucatán</h1>
+    <p class="lead">Datos abiertos sobre los casos de coronavirus en el estado de Yucatán.</p>
   </div>
+  <!--Cards-->
+  <section id="results">
+    <div class="row info-mx">
+      <div class="results-col col-lg-3 col-md-6">
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+          <div class="card-header">Positivos</div>
+          <div class="card-body">
+            <h5 class="card-title results">{{message.positivos.positivo_total}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="results-col col-lg-3 col-md-6">
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+          <div class="card-header">Confirmar</div>
+          <div class="card-body">
+            <h5 class="card-title  results">{{message.confirmar}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="results-col col-lg-3 col-md-6">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Negativos</div>
+          <div class="card-body">
+            <h5 class="card-title  results">{{message.negativos.negativo_total}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="results-col col-lg-3 col-md-6">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Defunciones</div>
+          <div class="card-body">
+            <h5 class="card-title  results">{{message.defunciones}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="row info-chart">
     <div class="col-lg">
       <canvas id="myChart"></canvas>
@@ -89,40 +94,40 @@
 
       // The data for our dataset
       data: {
-        labels: {{message.fechas | tojson}},
-        datasets: [{
-          label: 'Casos positivos',
-          backgroundColor: 'rgb(255, 99, 132)',
-          fill: false,
-          borderColor: 'rgb(255, 99, 132)',
-          data: {{message.positivos.positivo_array | tojson}}
+        labels: {{ message.fechas | tojson }},
+    datasets: [{
+      label: 'Casos positivos',
+      backgroundColor: 'rgb(255, 99, 132)',
+      fill: false,
+      borderColor: 'rgb(255, 99, 132)',
+      data: {{ message.positivos.positivo_array | tojson }}
         },
-        {
-          label: 'Casos negativos',
-          backgroundColor: 'rgb(24, 91, 179)',
-          fill: false,
-          borderColor: 'rgb(24, 91, 179)',
-          data: {{message.negativos.negativo_array | tojson}}
+    {
+      label: 'Casos negativos',
+      backgroundColor: 'rgb(24, 91, 179)',
+      fill: false,
+      borderColor: 'rgb(24, 91, 179)',
+      data: {{ message.negativos.negativo_array | tojson }}
         }]
       },
 
-      // Configuration options go here
-			options: {
-        responsive: true,
+    // Configuration options go here
+    options: {
+      responsive: true,
         maintainAspectRatio: false,
-				title: {
-					display: true,
-					text: 'Número de casos'
+          title: {
+        display: true,
+          text: 'Número de casos'
+      },
+      tooltips: {
+        mode: 'index',
+          intersect: false,
 				},
-				tooltips: {
-					mode: 'index',
-					intersect: false,
-				},
-				hover: {
-					mode: 'nearest',
-					intersect: true
-				},
-			}
+      hover: {
+        mode: 'nearest',
+          intersect: true
+      },
+    }
     });
   </script>
   <!--<script src="data.js"></script>-->
