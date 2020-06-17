@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+  }
 .info-mx{
     text-align: center;
     padding: auto;
@@ -6,27 +9,36 @@
     font-size: large;
     font-weight: bold;
 }
-.info-mx-bar{
+/*.info-mx-bar{
     margin: 2rem 30px;
-}
+}*/
 /*.info-mx-jumbo{
     padding: 20px 150px;
 }*/
 
 .container-fluid{
-    padding: 3% 10% 7%; /* le agrego mas padding debajo para que no se vean tan abajo los botones*/
+    padding: 3% 10% 2%; /* le agrego mas padding debajo para que no se vean tan abajo los botones*/
+    text-align: center;
+}
+.texto-containers{
+    text-align: justify;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .navbar{
-    padding: 0 3rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    /*padding: 0 3rem;*/
+    padding-left: 9rem;
+    padding-right: 9rem;
+}
+.navbar-brand{
+    font-weight: bold;
 }
 
 .nav-item{
     font-family: 'Ubuntu',sans-serif;
-    margin-left: 18px;
-    margin-right: 18px;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
 .text-info{
@@ -53,22 +65,40 @@
     padding: 30px;
     text-align: center;
   }
+h2{
+    padding-top: 2rem;
+    margin-bottom: 0;
+    text-align: center;
+}
   
 .results-col{
-    padding: 3% 2%;
+    padding: 0% 2% 3%;
 }
 
 /* Para evitar que la imagen se vea fea y centrar el contenido de la seccion de titulo */
 @media (min-width:990px){
     .info-chart{
         width: 50%;
-        margin: 100px auto;
+        margin: 0px auto 100px;
+    }
+    .texto-containers{
+        padding: 1% 1% 1%;
+        text-align: justify;
+    }
+    #results{
+        padding-top: 0px;
     }
 }
 
 @media (max-width:990px){
     .info-chart{    
-        margin: 200px auto;
+        margin: 0px auto 50px;
         width: 100%;
+    }
+    .navbar{
+        /*padding: 0 3rem;*/
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-bottom: 2rem;
     }
 }
