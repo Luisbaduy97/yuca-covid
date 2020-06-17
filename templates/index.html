@@ -40,30 +40,39 @@
       </ul>
     </div>
   </nav>
-  <!--Falta agregar el margen para los resultaods-->
+
+  <!--Cards-->
   <div class="row info-mx">
-    <div class="col-lg col-md">
-      <p class="text-info">Positivos</p>
-      <div id='positivos' class="alert alert-danger" role="alert">
-        {{message.positivos.positivo_total}}
+    <div class = "col-lg-3 col-md-6">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Positivos</div>
+        <div class="card-body">
+          <h5 class="card-title results">{{message.positivos.positivo_total}}</h5>
+        </div>
       </div>
     </div>
-    <div class="col-lg col-md">
-      <p class="text-info">Por confirmar</p>
-      <div id="confirmar" class="alert alert-warning" role="alert">
-        {{message.confirmar}}
+    <div class = "col-lg-3 col-md-6">
+      <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+        <div class="card-header">Confirmar</div>
+        <div class="card-body">
+          <h5 class="card-title  results">{{message.confirmar}}</h5>
+        </div>
       </div>
     </div>
-    <div class="col-lg col-md">
-      <p class="text-info">Negativos</p>
-      <div id='negativos' class="alert alert-info" role="alert">
-        {{message.negativos.negativo_total}}
+    <div class="col-lg-3 col-md-6">
+      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Negativos</div>
+        <div class="card-body">
+          <h5 class="card-title  results">{{message.negativos.negativo_total}}</h5>
+        </div>
       </div>
     </div>
-    <div class="col-lg col-md">
-      <p class="text-info">Defunciones</p>
-      <div id='defunciones' class="alert alert-secondary" role="alert">
-        {{message.defunciones}}
+    <div class="col-lg-3 col-md-6">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Defunciones</div>
+        <div class="card-body">
+          <h5 class="card-title  results">{{message.defunciones}}</h5>
+        </div>
       </div>
     </div>
   </div>
