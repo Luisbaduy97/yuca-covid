@@ -1,20 +1,45 @@
 .info-mx{
     text-align: center;
+    padding: auto;
     margin: 10px 80px;
     margin-top: 50px;
     font-size: large;
     font-weight: bold;
 }
-.info-mx-nav{
-    margin: 10px 30px;
+.info-mx-bar{
+    margin: 2rem 30px;
 }
+/*.info-mx-jumbo{
+    padding: 20px 150px;
+}*/
+
+.container-fluid{
+    padding: 3% 10% 7%; /* le agrego mas padding debajo para que no se vean tan abajo los botones*/
+}
+
+.navbar{
+    padding: 0 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.nav-item{
+    font-family: 'Ubuntu',sans-serif;
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
 .text-info{
     margin-bottom: 0px;
     color: black !important;
 }
 .nav-sep{
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.jumbotron-fluid *{
+    font-weight: bold;
+    
 }
 .info-chart{
     position: relative;
@@ -24,7 +49,14 @@
     font-weight: bold;
     font-size: x-large;
 }
-
+#results{
+    padding: 30px;
+    text-align: center;
+  }
+  
+.results-col{
+    padding: 3% 2%;
+}
 
 /* Para evitar que la imagen se vea fea y centrar el contenido de la seccion de titulo */
 @media (min-width:990px){
