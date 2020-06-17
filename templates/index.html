@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Webpage</title>
+  <title>Yuca-Covid</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <nav class="info-mx-bar navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">YucaCovid</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,26 +26,28 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav navbar-right ml-auto">
         <li class="nav-item active nav-sep">
-          <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#inicio">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item nav-sep">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="#results">Estatal</a>
         </li>
         <li class="nav-item nav-sep">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item nav-sep">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="#series">Diarios</a>
         </li>
       </ul>
     </div>
   </nav>
   <div class="container-fluid">
-    <h1 class="display-4">COVID-Yucatán</h1>
+    <h1 id="inicio" class="display-4">COVID-Yucatán</h1>
     <p class="lead">Datos abiertos sobre los casos de coronavirus en el estado de Yucatán.</p>
+  </div>
+  <div class="alert alert-primary texto-containers" role="alert">
+    <h2>Aviso</h2>
+    <p class="text-lg-left">El propósito de esta página es facilitar el acceso a los datos reportados por el gobierno federal sobre la situación de estado, debido a que el gobierno no proporciona una base de datos de manera abierta existe variación en los datos reportados.</p>
   </div>
   <!--Cards-->
   <section id="results">
+    <h2>Casos estatales</h2>
     <div class="row info-mx">
       <div class="results-col col-lg-3 col-md-6">
         <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
@@ -81,6 +83,7 @@
       </div>
     </div>
   </section>
+  <h2 id="series">Casos confirmados por día</h2>
   <div class="row info-chart">
     <div class="col-lg">
       <canvas id="myChart"></canvas>
