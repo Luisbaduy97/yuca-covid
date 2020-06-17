@@ -1,67 +1,131 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Webpage</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <script src="https://d3js.org/d3.v4.js"></script>
-  </head>
-  <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light info-mx-nav">
-      <a class="navbar-brand" href="#">YucaCovid</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav navbar-right ml-auto">
-          <li class="nav-item active nav-sep">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item nav-sep">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item nav-sep">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item nav-sep">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!--Falta agregar el margen para los resultaods-->
-    <div class="row info-mx">
-      <div class="col-lg col-md">
-        <p class="text-info">Positivos</p>
-        <div id = 'positivos' class="alert alert-danger" role="alert">
-          {{message.positivos}}
-        </div>
-      </div>
-      <div class="col-lg col-md">
-        <p class="text-info">Por confirmar</p>
-        <div id = "confirmar" class="alert alert-warning" role="alert">
-          {{message.confirmar}}
-        </div>
-      </div>
-      <div class="col-lg col-md">
-        <p class="text-info">Negativos</p>
-        <div id = 'negativos' class="alert alert-info" role="alert">
-          {{message.negativos}}
-        </div>
-      </div>
-      <div class="col-lg col-md">
-        <p class="text-info">Defunciones</p>
-        <div id = 'defunciones' class="alert alert-secondary" role="alert">
-          {{message.defunciones}}
-        </div>
+<head>
+  <meta charset="utf-8">
+  <title>Webpage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="{{url_for('static', filename='js/utils.js')}}"></script>
+
+
+  <!--<script src="https://d3js.org/d3.v4.js"></script>-->
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light info-mx-nav">
+    <a class="navbar-brand" href="#">YucaCovid</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav navbar-right ml-auto">
+        <li class="nav-item active nav-sep">
+          <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item nav-sep">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item nav-sep">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item nav-sep">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--Falta agregar el margen para los resultaods-->
+  <div class="row info-mx">
+    <div class="col-lg col-md">
+      <p class="text-info">Positivos</p>
+      <div id='positivos' class="alert alert-danger" role="alert">
+        {{message.positivos.positivo_total}}
       </div>
     </div>
-    <!--<script src="data.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
+    <div class="col-lg col-md">
+      <p class="text-info">Por confirmar</p>
+      <div id="confirmar" class="alert alert-warning" role="alert">
+        {{message.confirmar}}
+      </div>
+    </div>
+    <div class="col-lg col-md">
+      <p class="text-info">Negativos</p>
+      <div id='negativos' class="alert alert-info" role="alert">
+        {{message.negativos.negativo_total}}
+      </div>
+    </div>
+    <div class="col-lg col-md">
+      <p class="text-info">Defunciones</p>
+      <div id='defunciones' class="alert alert-secondary" role="alert">
+        {{message.defunciones}}
+      </div>
+    </div>
+  </div>
+  <div class="row info-chart">
+    <div class="col-lg">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+        labels: {{message.fechas | tojson}},
+        datasets: [{
+          label: 'Casos positivos',
+          backgroundColor: 'rgb(255, 99, 132)',
+          fill: false,
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{message.positivos.positivo_array | tojson}}
+        },
+        {
+          label: 'Casos negativos',
+          backgroundColor: 'rgb(24, 91, 179)',
+          fill: false,
+          borderColor: 'rgb(24, 91, 179)',
+          data: {{message.negativos.negativo_array | tojson}}
+        }]
+      },
+
+      // Configuration options go here
+			options: {
+        responsive: true,
+        maintainAspectRatio: false,
+				title: {
+					display: true,
+					text: 'Número de casos'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+			}
+    });
+  </script>
+  <!--<script src="data.js"></script>-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

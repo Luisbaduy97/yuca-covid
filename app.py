@@ -113,17 +113,6 @@ car = data3[data3['CARDIOVASCULAR'] == 1]
 asma = data3[data3['ASMA'] == 1]
 inmu = data3[data3['INMUSUPR'] == 1]
 
-# fig2 = go.Figure()
-# fig2.add_trace(go.Histogram(histfunc="count", y=neumonia['NEUMONIA'], x=neumonia['Gender'], name="NEUMONIA"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=diabetes['DIABETES'], x=diabetes['Gender'], name="DIABETES"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=epoc['EPOC'], x=epoc['Gender'], name="EPOC"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=hiper['HIPERTENSION'], x=hiper['Gender'], name="HIPERTENSION"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=ob['OBESIDAD'], x=ob['Gender'], name="OBESIDAD"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=car['CARDIOVASCULAR'], x=car['Gender'], name="CARDIOVASCULAR"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=asma['ASMA'], x=asma['Gender'], name="ASMA"))
-# fig2.add_trace(go.Histogram(histfunc="count", y=inmu['INMUSUPR'], x=inmu['Gender'], name="INMUNOSUPR"))
-# fig2.update_layout(title="Casos positivos que presentan otra enfermedad",title_x=0.5, template = 'plotly_dark')
-
 
 
 ####################################
@@ -144,15 +133,43 @@ nii['ACUMULADO'] = nii['SUMA'].cumsum() #acumulado de casos negativos
 
 muertos = fi[fi['FECHA_DEF'] != '9999-99-99'].shape[0]
 sospechosos = data_f['Por confirmar'].sum()
+acu_datos_pos = fii['ACUMULADO'].values.tolist()
+acu_fechas_pos = fii['FECHA_INGRESO'].values.tolist()
+acu_datos_neg = nii['ACUMULADO'].values.tolist()
+acu_fechas_neg = nii['FECHA_INGRESO'].values.tolist()
+#######################################
+data_positivos = pd.DataFrame()
+data_positivos['Positivos'] = acu_datos_pos
+data_positivos['Fecha_positivos'] = acu_fechas_pos
+data_negativos = pd.DataFrame()
+data_negativos['Negativos'] = acu_datos_neg
+data_negativos['Fecha_negativos'] = acu_fechas_neg
 
 
-# figx = go.Figure()
-# figx.add_trace(go.Scatter(x=fii['FECHA_INGRESO'].values.tolist(),y=fii['ACUMULADO'].values.tolist(), mode='lines+markers', name = 'Casos acumulados positivos'))
-# figx.add_trace(go.Scatter(x=nii['FECHA_INGRESO'].values.tolist(),y=nii['ACUMULADO'].values.tolist(), mode='lines+markers', name = 'Casos acumulados negativos'))
+fecha_final = data_positivos['Fecha_positivos'].values.tolist()[-1]
+date = np.array(fecha_final, dtype=np.datetime64)
+date_p = date - np.arange(data_negativos.shape[0])
+date_p = np.flip(date_p)
+fechas = pd.DataFrame()
+fechas['Fecha'] = date_p
+fecha = fechas['Fecha'].dt.strftime("%Y-%m-%d").values.tolist()
+del fechas
 
+posi = []
+negs = []
 
-# figx.update_layout(title="Casos acumulados en el estado",xaxis_title="Fecha de ingreso",yaxis_title="Acumulado", title_x=0.5, legend_orientation="h", template = 'plotly_dark')
-# figx.update_xaxes(rangeslider_visible=True)
+plot_pos = pd.DataFrame()
+plot_pos['Positivos'] = np.flip(data_positivos['Positivos'].values)
+plot_neg = pd.DataFrame()
+plot_neg['Negativos'] = np.flip(data_negativos['Negativos'].values)
+plot_neg['Fecha'] = np.flip(np.asarray(fecha))
+plotting = pd.DataFrame()
+plotting = pd.concat([plot_pos,plot_neg], ignore_index=True, axis=1)
+plotting.columns = ['Positivos', 'Negativos', 'Fecha']
+plotting = plotting.fillna(0)
+plotting = plotting.sort_values(by = 'Fecha')
+    
+
  
 # creates a Flask application, named app
 app = Flask(__name__)
@@ -161,8 +178,11 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     message = {
-    'positivos': fii['ACUMULADO'].values.tolist()[-1],
-    'negativos':nii['ACUMULADO'].values.tolist()[-1],
+    'positivos': {'positivo_total':fii['ACUMULADO'].values.tolist()[-1],
+                  'positivo_array':plotting['Positivos'].values.tolist()},
+    'negativos':{'negativo_total' : nii['ACUMULADO'].values.tolist()[-1],
+                 'negativo_array':plotting['Negativos'].values.tolist()},
+    'fechas': plotting['Fecha'].values.tolist(),
     'defunciones':muertos,
     'confirmar':sospechosos}
     return render_template('index.html', message=message)
