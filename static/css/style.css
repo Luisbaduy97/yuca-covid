@@ -17,8 +17,6 @@
 }
 .info-chart{
     position: relative;
-    margin: 200px auto;
-    width: 100%;
     height: 80vh;
 }
 
@@ -28,5 +26,12 @@
     .info-chart{
         width: 50%;
         margin: 100px auto;
+    }
+}
+
+@media (max-width:990px){
+    .info-chart{    
+        margin: 200px auto;
+        width: 100%;
     }
 }
