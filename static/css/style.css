@@ -56,6 +56,11 @@ html {
     font-weight: bold;
     
 }
+
+div.texto-containers h2{
+    padding-top: 0px;
+}
+
 .info-chart{
     position: relative;
     height: 80vh;
@@ -79,11 +84,12 @@ h2{
 .card-body{
     padding-bottom: 0px;
 }
-.botones{
-    border-top: 0px;
-    border-bottom: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+
+.fab.fa-linkedin.fa-3x:hover{
+    opacity: 0.3;
+}
+.fab.fa-github.fa-3x:hover{
+    opacity: 0.3;
 }
 
 
