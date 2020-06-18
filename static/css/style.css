@@ -73,10 +73,10 @@ h2{
     margin-bottom: 0;
     text-align: center;
 }
-  
 .results-col{
-    padding: 0% 2% 3%;
+    padding: 0% 1%;
 }
+
 
 /* Para evitar que la imagen se vea fea y centrar el contenido de la seccion de titulo */
 @media (min-width:990px){
