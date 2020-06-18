@@ -76,6 +76,15 @@ h2{
 .results-col{
     padding: 0% 1%;
 }
+.card-body{
+    padding-bottom: 0px;
+}
+.botones{
+    border-top: 0px;
+    border-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
 
 
 /* Para evitar que la imagen se vea fea y centrar el contenido de la seccion de titulo */
