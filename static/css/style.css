@@ -91,9 +91,6 @@ h2{
     #results{
         padding-top: 0px;
     }
-    .card_w{
-        max-width: 18rem;
-    }
 }
 
 @media (max-width:990px){
@@ -115,9 +112,5 @@ h2{
         text-align: justify;
         margin-left: 10%;
         margin-right: 10%;
-    }
-    .card_p{
-        padding-left: 0px;
-        padding-right: 0px;
     }
 }
