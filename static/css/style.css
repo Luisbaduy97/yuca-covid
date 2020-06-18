@@ -101,4 +101,14 @@ h2{
         padding-right: 2rem;
         margin-bottom: 2rem;
     }
+    h2{
+        padding-top: 2rem;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    .texto-containers{
+        text-align: justify;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 }
