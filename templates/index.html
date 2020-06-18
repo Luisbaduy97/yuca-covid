@@ -51,10 +51,9 @@
     <div class="row info-mx">
       <div class="results-col col-lg-3">
         <div class="card text-white bg-danger mb-3">
-          <div class="card-header">Positivos</div>
+          <div class="card-header adjust">Positivos</div>
           <div class="card-body">
-            <h5 class="card-title results">{{message.positivos.positivo_total}}</h5>
-            <button type="button" class="btn btn-danger btn-lg botones" disabled></button>
+            <h5 class="card-title">{{message.positivos.positivo_total}}</h5>
           </div>
         </div>
       </div>
@@ -63,7 +62,6 @@
           <div class="card-header">Confirmar</div>
           <div class="card-body">
             <h5 class="card-title  results">{{message.confirmar}}</h5>
-            <button type="button" class="btn btn-warning btn-lg  botones" disabled></button>
           </div>
         </div>
       </div>
@@ -72,22 +70,20 @@
           <div class="card-header">Negativos</div>
           <div class="card-body">
             <h5 class="card-title  results">{{message.negativos.negativo_total}}</h5>
-            <button type="button" class="btn btn-primary btn-lg  botones" disabled></button>
           </div>
         </div>
       </div>
       <div class="results-col col-lg-3">
         <div class="card text-white bg-secondary mb-3">
-          <div class="card-header">Defunciones</div>
+          <div class="card-header">Muertes</div>
           <div class="card-body">
             <h5 class="card-title  results">{{message.defunciones}}</h5>
-            <button type="button" class="btn btn-secondary btn-lg  botones" disabled></button>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <h2 id="series">Casos confirmados por día</h2>
+  <h2 id="series">Casos diarios</h2>
   <div class="row info-chart">
     <div class="col-lg">
       <canvas id="myChart"></canvas>
