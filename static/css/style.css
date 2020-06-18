@@ -31,6 +31,9 @@ html {
     padding-left: 9rem;
     padding-right: 9rem;
 }
+.space{
+    margin-bottom: 2.5rem;
+}
 .navbar-brand{
     font-weight: bold;
 }
@@ -88,6 +91,9 @@ h2{
     #results{
         padding-top: 0px;
     }
+    .card_w{
+        max-width: 18rem;
+    }
 }
 
 @media (max-width:990px){
@@ -99,7 +105,6 @@ h2{
         /*padding: 0 3rem;*/
         padding-left: 2rem;
         padding-right: 2rem;
-        margin-bottom: 2rem;
     }
     h2{
         padding-top: 2rem;
@@ -110,5 +115,9 @@ h2{
         text-align: justify;
         margin-left: 10%;
         margin-right: 10%;
+    }
+    .card_p{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
