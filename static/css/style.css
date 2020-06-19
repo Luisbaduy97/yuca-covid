@@ -1,6 +1,13 @@
 html {
     scroll-behavior: smooth;
   }
+body {
+    padding: 0;
+    margin: 0;
+  }
+html, body, #map {
+    height: 100%;
+  }
 .info-mx{
     text-align: center;
     padding: auto;
@@ -61,10 +68,18 @@ div.texto-containers h2{
     padding-top: 0px;
 }
 
-.info-chart{
+/*.info-chart{
     position: relative;
     height: 80vh;
+}*/
+.info-chart{
+    margin: auto;
+    height: 80vh;
+    width: 100%;
+    padding: auto;
 }
+
+
 .results{
     font-weight: bold;
     font-size: x-large;
@@ -92,7 +107,6 @@ h2{
     opacity: 0.3;
 }
 
-
 /* Para evitar que la imagen se vea fea y centrar el contenido de la seccion de titulo */
 @media (min-width:990px){
     .info-chart{
@@ -109,10 +123,11 @@ h2{
 }
 
 @media (max-width:990px){
-    .info-chart{    
+    /*.info-chart{    
         margin: 0px auto 50px;
         width: 100%;
-    }
+        height: 80vh;
+    }*/
     .navbar{
         /*padding: 0 3rem;*/
         padding-left: 2rem;

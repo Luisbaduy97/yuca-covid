@@ -4,11 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>Yuca-Covid</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
 
   <script src="https://kit.fontawesome.com/04f023429b.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -58,8 +63,11 @@
       existe variación en los datos reportados.</p>
   </div>
   <div class="text-center">
-    <a href="https://www.linkedin.com/in/luis-navarrete-baduy-53bb30176/" target="_blank"><i class="fab fa-linkedin fa-3x" style="color: #0072b1; margin-top:10px; margin-bottom:10px; padding-left: 10px; padding-right: 10px;"></i></a>
-    <a href="https://github.com/Luisbaduy97" target="_blank"><i class="fab fa-github fa-3x" style="color:black; margin-top:10px; margin-bottom:10px padding-left: 10px; padding-right: 10px;"></i></a>
+    <a href="https://www.linkedin.com/in/luis-navarrete-baduy-53bb30176/" target="_blank"><i
+        class="fab fa-linkedin fa-3x"
+        style="color: #0072b1; margin-top:10px; margin-bottom:10px; padding-left: 10px; padding-right: 10px;"></i></a>
+    <a href="https://github.com/Luisbaduy97" target="_blank"><i class="fab fa-github fa-3x"
+        style="color:black; margin-top:10px; margin-bottom:10px padding-left: 10px; padding-right: 10px;"></i></a>
   </div>
   <!--Cards-->
   <section id="results">
@@ -99,14 +107,52 @@
       </div>
     </div>
   </section>
-  <h2 id="series">Casos diarios</h2>
-  <section>
-    <div class="row info-chart">
-      <div class="col-lg">
-        <canvas id="myChart"></canvas>
+  <section class="container-fluid mx-auto">
+    <div class="row px-lg-5 py-5">
+      <div class="col-lg-12">
+        <div id="map" style="height:500px;"></div> <!-- Mapa de casos -->
       </div>
     </div>
   </section>
+  <script>
+    var lat = {{ message.lat }};
+    var lon = {{ message.lon }};
+    var muni = {{ message.muni | tojson }};
+    var posi = {{ message.posi }};
+    var neg = {{ message.neg }};
+    var conf = {{ message.conf }};
+    var tam = {{ message.tam }};
+
+    //console.log(posi);
+    // pass option to turn scroll wheel zoom off
+    var map = L.map('map', { scrollWheelZoom: true }).setView([20.97537, -89.61696], 8);
+
+    // add base map tiles from OpenStreetMap and attribution info to 'map' div
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    for (let i = 0; i < lat.length; i++) {
+      if (posi[i] > 0) {
+        // add circle by passing center, radius, and some basic styles
+        var circle = L.circle([lat[i], lon[i]], posi[i] + 3000, { color: 'red', opacity: 1, fillColor: '#f03', fillOpacity: .5 }).addTo(map);
+        var texto = "<p>" + muni[i] + "<br>" + "Positivos " + posi[i].toString() + "</p>";
+        circle.bindPopup(texto);
+        circle.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        circle.on('mouseout', function (e) {
+          this.closePopup();
+        });
+      }
+    }
+  </script>
+  <div class="container">
+    <h2 id="series">Casos diarios</h2>
+  </div>
+  <div class="info-chart">
+    <canvas id="myChart"></canvas>
+  </div>
   <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
