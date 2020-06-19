@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Yuca-Covid</title>
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no" />
+  <title>Yuca-COVID</title>
+  <link rel="icon" href="{{url_for('static', filename='images/covid_edit.png')}}" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://example.com/favicon.png" />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no" />-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -56,11 +58,12 @@
     <h1 id="inicio" class="display-4">COVID Yucatán</h1>
     <p class="lead">Datos abiertos sobre los casos de coronavirus en el estado de Yucatán.</p>
   </div>
-  <div class="alert alert-primary texto-containers" role="alert">
+  <div class="alert alert-info texto-containers" role="alert">
     <h2>Aviso</h2>
-    <p class="text-lg-left">El propósito de esta página es facilitar el acceso a los datos reportados por el gobierno
-      federal sobre la situación de estado, debido a que el gobierno no proporciona una base de datos de manera abierta
-      existe variación en los datos reportados.</p>
+    <p class="text-lg-left text-dark">El propósito de esta página es facilitar el acceso a los datos publicados por la
+      <a href="https://www.gob.mx/salud/documentos/datos-abiertos-152127" target="_blank">Dirección General de
+        Epidemiología</a> sobre la situación en Yucatán, debido a que el gobierno estatal no proporciona una base de
+      datos de manera abierta, existe variación en los datos reportados.</p>
   </div>
   <div class="text-center">
     <a href="https://www.linkedin.com/in/luis-navarrete-baduy-53bb30176/" target="_blank"><i
@@ -107,7 +110,16 @@
       </div>
     </div>
   </section>
-  <section class="container-fluid mx-auto">
+  <div class="alert alert-info texto-containers mb-0" role="alert">
+    <ul>
+      <li>
+        <p class="text-lg-left text-dark mb-0">Los puntos rojos en el mapa representan los municipios con casos de COVID
+          reportados por la <a href="https://www.gob.mx/salud/documentos/datos-abiertos-152127"
+            target="_blank">Dirección General de Epidemiología</a>.</p>
+      </li>
+    </ul>
+  </div>
+  <section class="container-fluid mx-auto mt-0 pt-0">
     <div class="row px-lg-5 py-5">
       <div class="col-lg-12">
         <div id="map" style="height:500px;"></div> <!-- Mapa de casos -->
@@ -147,6 +159,17 @@
       }
     }
   </script>
+  <div class="alert alert-info texto-containers mb-0" role="alert">
+    <p class="text-lg-left text-dark mb-0">El siguiente gráfico representa el número acumulado de casos desde la primera sospecha de COVID en el estado:</p>
+    <ul>
+      <li>
+        <p class="text-lg-left text-dark mb-0">La curva de color de rojo representa el incremento de casos positivos.</p>
+      </li>
+      <li>
+        <p class="text-lg-left text-dark mb-0">La curva de color de azul representa el incremento de casos negativos.</p>
+      </li>
+    </ul>
+  </div>
   <div class="container">
     <h2 id="series">Casos diarios</h2>
   </div>
@@ -164,9 +187,9 @@
         labels: {{ message.fechas | tojson }},
     datasets: [{
       label: 'Casos positivos',
-      backgroundColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 0, 0)',
       fill: false,
-      borderColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 0, 0)',
       data: {{ message.positivos.positivo_array | tojson }}
         },
     {
@@ -199,6 +222,21 @@
   </script>
   <!--                     -->
   <!--<script src="data.js"></script>-->
+  <div class="alert alert-info texto-containers mb-0" role="alert">
+    <p class="text-lg-left text-dark mb-0">Si presentas síntomas comunícate al Call Center 800 YUCATÁN (982 2826)
+      o a la Unidad de Inteligencia Epidemiológica y Sanitaria 800 00 44 800.
+    </p>
+  </div>
+  <footer>
+    <div class="text-center">
+      <a href="https://www.linkedin.com/in/luis-navarrete-baduy-53bb30176/" target="_blank"><i
+          class="fab fa-linkedin fa-3x"
+          style="color: #0072b1; margin-top:10px; margin-bottom:10px; padding-left: 10px; padding-right: 10px;"></i></a>
+      <a href="https://github.com/Luisbaduy97" target="_blank"><i class="fab fa-github fa-3x"
+          style="color:black; margin-top:10px; margin-bottom:10px padding-left: 10px; padding-right: 10px;"></i></a>
+      <p>© Copyright 2020 Yuca-COVID</p>
+    </div>
+  </footer>
 </body>
 
 </html>
