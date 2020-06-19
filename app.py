@@ -17,7 +17,7 @@ defunciones = 20
 
 ##covid = pd.read_csv('https://github.com/Luisbaduy97/COVID-YUCATAN/blob/master/historical_db/200613COVID19MEXICO.csv?raw=true', encoding="ISO-8859-1") # manual
 
-covid = pd.read_csv('historical_db/200617COVID19MEXICO.csv', encoding="ISO-8859-1") # manual
+covid = pd.read_csv('historical_db/200618COVID19MEXICO.csv', encoding="ISO-8859-1") # manual
 
 
 coords = pd.read_csv('coordinates/coordenadas.csv')
@@ -168,7 +168,14 @@ plotting = pd.concat([plot_pos,plot_neg], ignore_index=True, axis=1)
 plotting.columns = ['Positivos', 'Negativos', 'Fecha']
 plotting = plotting.fillna(0)
 plotting = plotting.sort_values(by = 'Fecha')
-    
+
+muni = data_f['Municipio'].values.tolist()
+posi = data_f['Positivos'].values.tolist()
+neg = data_f['Negativos'].values.tolist()
+conf = data_f['Por confirmar'].values.tolist()
+lat = data_f['Latitud'].values.tolist()
+long = data_f['Longitud'].values.tolist()
+tam = data_f['Tamaño'].values.tolist()
 
  
 # creates a Flask application, named app
@@ -184,7 +191,15 @@ def hello():
                  'negativo_array':plotting['Negativos'].values.tolist()},
     'fechas': plotting['Fecha'].values.tolist(),
     'defunciones':muertos,
-    'confirmar':sospechosos}
+    'confirmar':sospechosos,
+    'muni':muni,
+    'posi': posi,
+    'neg': neg,
+    'conf': conf,
+    'lat': lat,
+    'lon': long,
+    'tam': tam}
+    
     return render_template('index.html', message=message)
 
 # run the application
