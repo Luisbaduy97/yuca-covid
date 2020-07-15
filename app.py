@@ -19,7 +19,8 @@ defunciones = 20
 
 #covid = pd.read_csv('historical_db/200706COVID19MEXICO.zip', encoding="ISO-8859-1") # manual
 
-covid = pd.read_csv('historical_db/datos_abiertos_covid19.zip', encoding="ISO-8859-1") # manual
+#covid = pd.read_csv('historical_db/datos_abiertos_covid19.zip', encoding="ISO-8859-1") # manual
+covid = pd.read_csv('historical_db/data_yucatan.csv', encoding="ISO-8859-1") # manual
 
 coords = pd.read_csv('coordinates/coordenadas.csv')
 yuc_coords = coords[coords['Num_Ent'] == 31]
