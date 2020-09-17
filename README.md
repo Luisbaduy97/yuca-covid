@@ -19,4 +19,4 @@ The purpose of this project is to be able to visualize the data of the State of 
 </p>
 
 
-This project was made with :heart: by <a href='https://www.linkedin.com/in/luis-navarrete-baduy-53bb30176/'>Luis Navarrete</a>.
+This project was made with :heart:  by <a href='https://www.linkedin.com/in/luis-navarrete-baduy-53bb30176/'>Luis Navarrete</a>.
